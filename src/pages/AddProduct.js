@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ref, set } from 'firebase/database';
-import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { auth, database, storage } from '../firebase/firebaseConfig';
+import { auth, database } from '../firebase/firebaseConfig';
 import '../styles/add-product.css';
 
 const AddProduct = () => {
@@ -13,7 +12,7 @@ const AddProduct = () => {
         startingPrice: '',
         startTime: '',
         endTime: '',
-        images: [], // Change to array to store multiple image files
+        images: [], // Array to store image files
     });
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -36,7 +35,7 @@ const AddProduct = () => {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        if (files.length > 5) { // Limit to 5 images
+        if (files.length > 5) {
             setError('You can upload a maximum of 5 images.');
             return;
         }
@@ -78,14 +77,17 @@ const AddProduct = () => {
         }
 
         try {
-            // Upload images to Firebase Storage
-            const imageUrls = [];
-            for (const image of images) {
-                const imageRef = storageRef(storage, `product-images/${Date.now()}-${image.name}`);
-                const snapshot = await uploadBytes(imageRef, image);
-                const url = await getDownloadURL(snapshot.ref);
-                imageUrls.push(url);
-            }
+            // Convert images to base64 strings
+            const imagePromises = images.map((image) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = (error) => reject(error);
+                    reader.readAsDataURL(image);
+                });
+            });
+
+            const imageBase64Strings = await Promise.all(imagePromises);
 
             // Save product to Firebase Database
             const productId = Date.now().toString();
@@ -98,7 +100,9 @@ const AddProduct = () => {
                 startTime: startDateTime,
                 endTime: endDateTime,
                 seller: auth.currentUser.email,
-                images: imageUrls, // Store array of image URLs
+                images: imageBase64Strings, // Store base64 strings in the images array
+                isActive: false,
+                paymentStatus: 'pending',
             });
 
             setSuccess('Product added successfully!');
@@ -112,6 +116,7 @@ const AddProduct = () => {
             });
             setTimeout(() => navigate('/seller-dashboard'), 1500);
         } catch (err) {
+            console.error('Error adding product:', err);
             setError('Failed to add product: ' + err.message);
         } finally {
             setLoading(false);

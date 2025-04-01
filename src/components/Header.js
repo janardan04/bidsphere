@@ -39,10 +39,10 @@ const Header = () => {
                 <Link className="navbar-brand" to="/">
                     BidSphere
                 </Link>
-                <button 
-                    className="navbar-toggler" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
                     aria-controls="navbarNav"
                     aria-expanded="false"
@@ -82,8 +82,15 @@ const Header = () => {
                     <div className="d-flex gap-2">
                         {user ? (
                             <>
-                                <span className="navbar-text"> <b>{user.displayName || user.email}</b></span>
-                                <button className="btn btn-outline-danger logout-button" onClick={handleLogout}>Logout</button>
+                                <span className="navbar-text">
+                                    <b>{user.displayName || user.email}</b>
+                                </span>
+                                <Link to="/profile" className="btn btn-outline-primary">
+                                    Profile
+                                </Link>
+                                <button className="btn btn-outline-danger logout-button" onClick={handleLogout}>
+                                    Logout
+                                </button>
                             </>
                         ) : (
                             <div className="dropdown">
@@ -97,12 +104,65 @@ const Header = () => {
                                     Login
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                                    <li>
-                                        <Link to="/login" className="dropdown-item">User Login</Link>
+                                    <li style={{ listStyle: "none", marginBottom: "8px" }}>
+                                        <Link
+                                            to="/login"
+                                            className="dropdown-item"
+                                            style={{
+                                                display: "block",
+                                                padding: "10px 15px",
+                                                textDecoration: "none",
+                                                color: "#333",
+                                                background: "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))",
+                                                borderRadius: "5px",
+                                                transition: "all 0.3s ease-in-out",
+                                                textAlign: "center",
+                                            }}
+                                            onMouseOver={(e) => {
+                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 1), rgba(93, 173, 226, 1))";
+                                                e.target.style.transform = "scale(1.05)";
+                                                e.target.style.color = "#fff";
+                                            }}
+                                            onMouseOut={(e) => {
+                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))";
+                                                e.target.style.transform = "scale(1)";
+                                                e.target.style.color = "#333";
+                                            }}
+                                        >
+                                            User Login
+                                        </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/seller-login" className="dropdown-item">Seller Login</Link>
+
+                                    <li style={{ listStyle: "none" }}>
+                                        <Link
+                                            to="/seller-login"
+                                            className="dropdown-item"
+                                            style={{
+                                                display: "block",
+                                                padding: "10px 15px",
+                                                textDecoration: "none",
+                                                color: "#333",
+                                                background: "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))",
+                                                borderRadius: "5px",
+                                                transition: "all 0.3s ease-in-out",
+                                                textAlign: "center",
+                                            }}
+                                            onMouseOver={(e) => {
+                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 1), rgba(93, 173, 226, 1))";
+                                                e.target.style.transform = "scale(1.05)";
+                                                e.target.style.color = "#fff";
+                                            }}
+                                            onMouseOut={(e) => {
+                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))";
+                                                e.target.style.transform = "scale(1)";
+                                                e.target.style.color = "#333";
+                                            }}
+                                        >
+                                            Seller Login
+                                        </Link>
                                     </li>
+
+
                                 </ul>
                             </div>
                         )}

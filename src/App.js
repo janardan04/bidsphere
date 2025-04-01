@@ -1,4 +1,3 @@
-// src/App.js
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,6 +12,7 @@ import SellerDashboard from './pages/SellerDashboard';
 import SellerLogin from './pages/SellerLogin';
 import SellerRegister from './pages/SellerRegister';
 import PlaceBid from './pages/PlaceBid';
+import Profile from './pages/Profile'; // Import the Profile component
 
 function App() {
     return (
@@ -31,6 +31,7 @@ function App() {
                     <Route path="/seller-login" element={<SellerLogin />} />
                     <Route path="/seller-register" element={<SellerRegister />} />
                     <Route path="/place-bid/:id" element={<PlaceBid />} />
+                    <Route path="/profile" element={<Profile />} /> {/* Added Profile route */}
                 </Routes>
                 <Footer />
             </div>
