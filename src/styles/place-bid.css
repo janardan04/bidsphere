@@ -1,0 +1,33 @@
+/* src/styles/place-bid.css */
+.place-bid-page {
+    padding-bottom: 40px;
+}
+
+.place-bid-page h2 {
+    color: #4a6cf7;
+    margin-bottom: 20px;
+}
+
+.place-bid-page h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.place-bid-page .card {
+    transition: transform 0.3s ease;
+}
+
+.place-bid-page .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.place-bid-page .btn-primary {
+    background-color: #4a6cf7;
+    border-color: #4a6cf7;
+}
+
+.place-bid-page .btn-primary:hover {
+    background-color: #3a5bd7;
+    border-color: #3a5bd7;
+}

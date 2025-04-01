@@ -1,0 +1,238 @@
+
+login.jsp
+79 lines
+
+text
+
+login.css
+164 lines
+
+css
+
+register.jsp
+118 lines
+
+text
+
+register.css
+165 lines
+
+css
+
+login.jsp and register.jsp is not responsive if iam open them on my mobile
+
+Looking at the code for both login.jsp and register.jsp, I can see some issues that might be causing responsive design problems on mobile devices. Let me analyze the problems and suggest fixes.
+
+Issues Identified
+Width Conflicts: Both CSS files set .login-container and .reg-container to width: 120%, which can cause overflow on mobile devices.
+Fixed Dimensions: Some elements have fixed sizes rather than responsive ones.
+Animation Delays: The login page uses fixed animation delays which might affect the loading experience on slower mobile connections.
+Input Field Sizing: The input fields have fixed heights which might not scale well on smaller screens.
+Here's how to fix these issues:
+
+Updated login.css
+Code 
+
+Updated register.css
+Code 
+Explanation of Changes
+For Both Files:
+Fixed Container Width: Changed width: 120% to width: 100% to prevent overflow
+Responsive Padding: Reduced padding on smaller screens
+Responsive Font Sizing: Added fluid typography with calc() for headings
+Improved Media Queries: Enhanced existing media queries and added one for very small screens
+Flexible Heights: Changed fixed heights to min-height with auto to allow content to expand
+Login Page Specific:
+Fixed Vertical Space: Changed min-height: 120vh to min-height: 100vh to prevent unnecessary scrolling
+Animation Timing: I kept the animations but made sure they won't interfere with mobile usability
+Register Page Specific:
+Gap Adjustment: Added responsive gap reduction for the gender selection radio buttons
+CSS Class Consistency: Fixed some CSS classes that had unnecessary prefixes
+Implementation Instructions
+Replace the content of your login.css and register.css files with the updated code
+Test the pages on multiple device sizes to ensure they're now responsive
+These changes maintain the original design aesthetic while making the pages properly responsive across device sizes. The main issues were the fixed width percentages and the fixed element sizes that weren't adapting well to smaller screens.
+
+
+
+
+
+
+/* Registration page specific styles */
+.reg-page {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    margin: 1rem auto;
+}
+
+.reg-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    animation: regFadeIn 0.6s ease-out;
+}
+
+.reg-card:hover {
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.reg-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.reg-header h2 {
+    color: #232f3e;
+    font-weight: 600;
+    font-size: calc(1.25rem + 0.5vw);
+}
+
+.form-control,
+.form-select {
+    border-radius: 7px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    border: 1px solid #ced4da;
+    transition: all 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #4DA8DA;
+    box-shadow: 0 0 0 0.25rem rgba(77, 168, 218, 0.25);
+}
+
+.form-label {
+    color: #495057;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4DA8DA, #2B7CB6);
+    border: none;
+    border-radius: 7px;
+    padding: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2B7CB6, #4DA8DA);
+    transform: translateY(-2px);
+}
+
+a {
+    color: #f0c14b;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #d9a834;
+    text-decoration: underline;
+}
+
+.alert {
+    border-radius: 7px;
+    font-size: 0.9rem;
+}
+
+.form-floating input,
+.form-floating select {
+    height: auto;
+    min-height: calc(3.5rem + 2px);
+    padding: 1rem 0.75rem;
+}
+
+.form-floating label {
+    padding: 1rem 0.75rem;
+}
+
+.password-toggle-icon {
+    cursor: pointer;
+}
+
+/* Error Messages */
+.text-danger {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+/* Animation for page loading */
+@keyframes regFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .reg-container {
+        max-width: 95%;
+        padding: 10px;
+    }
+    
+    .reg-card {
+        padding: 1rem;
+    }
+    
+    .reg-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-floating input,
+    .form-floating select,
+    .btn-primary {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .form-check-label, a, p {
+        font-size: 0.9rem;
+    }
+    
+    .d-flex.gap-4 {
+        gap: 0.5rem !important;
+    }
+}
+
+/* For extremely small screens */
+@media (max-width: 320px) {
+    .reg-container {
+        padding: 5px;
+    }
+    
+    .reg-card {
+        padding: 0.8rem;
+    }
+    
+    .form-floating input,
+    .form-floating select {
+        font-size: 13px;
+    }
+}
