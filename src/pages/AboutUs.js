@@ -8,9 +8,6 @@ const AboutUs = () => {
 
     return (
         <div>
-            <Link to="/" className="ms-3 mt-3 d-inline-block">
-                Back To Home
-            </Link>
             <div className="container">
                 <h1>About Us</h1>
                 <p>

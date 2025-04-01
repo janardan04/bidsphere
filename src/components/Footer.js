@@ -233,23 +233,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div className="footer-section">
-                    <h3>Customer Support</h3>
-                    <ul>
-                        <li>
-                            <a href="#">Help Center</a>
-                        </li>
-                        <li>
-                            <a href="#">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="#">Report an Issue</a>
-                        </li>
-                        <li>
-                            <Link to="/contact">Contact Us</Link>
-                        </li>
-                    </ul>
-                </div>
+                
             </div>
 
             <div className="footer-bottom">

@@ -72,6 +72,34 @@ const Header = () => {
                                 Auctions
                             </Link>
                         </li>
+                        {!user && (
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">
+                                        User Login
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/seller-login">
+                                        Seller Login
+                                    </Link>
+                                </li>
+                            </>
+                        )}
+                        {user && (
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/profile">
+                                        Profile
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="#" onClick={handleLogout}>
+                                        Logout
+                                    </Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                     <form className="d-flex search-form" onSubmit={handleSearch}>
                         <input type="search" className="form-control search-input" placeholder="Search..." />
@@ -79,94 +107,11 @@ const Header = () => {
                             <i className="fas fa-search"></i>
                         </button>
                     </form>
-                    <div className="d-flex gap-2">
-                        {user ? (
-                            <>
-                                <span className="navbar-text">
-                                    <b>{user.displayName || user.email}</b>
-                                </span>
-                                <Link to="/profile" className="btn btn-outline-primary">
-                                    Profile
-                                </Link>
-                                <button className="btn btn-outline-danger logout-button" onClick={handleLogout}>
-                                    Logout
-                                </button>
-                            </>
-                        ) : (
-                            <div className="dropdown">
-                                <button
-                                    className="btn btn-outline-primary dropdown-toggle"
-                                    type="button"
-                                    id="loginDropdown"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Login
-                                </button>
-                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                                    <li style={{ listStyle: "none", marginBottom: "8px" }}>
-                                        <Link
-                                            to="/login"
-                                            className="dropdown-item"
-                                            style={{
-                                                display: "block",
-                                                padding: "10px 15px",
-                                                textDecoration: "none",
-                                                color: "#333",
-                                                background: "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))",
-                                                borderRadius: "5px",
-                                                transition: "all 0.3s ease-in-out",
-                                                textAlign: "center",
-                                            }}
-                                            onMouseOver={(e) => {
-                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 1), rgba(93, 173, 226, 1))";
-                                                e.target.style.transform = "scale(1.05)";
-                                                e.target.style.color = "#fff";
-                                            }}
-                                            onMouseOut={(e) => {
-                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))";
-                                                e.target.style.transform = "scale(1)";
-                                                e.target.style.color = "#333";
-                                            }}
-                                        >
-                                            User Login
-                                        </Link>
-                                    </li>
-
-                                    <li style={{ listStyle: "none" }}>
-                                        <Link
-                                            to="/seller-login"
-                                            className="dropdown-item"
-                                            style={{
-                                                display: "block",
-                                                padding: "10px 15px",
-                                                textDecoration: "none",
-                                                color: "#333",
-                                                background: "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))",
-                                                borderRadius: "5px",
-                                                transition: "all 0.3s ease-in-out",
-                                                textAlign: "center",
-                                            }}
-                                            onMouseOver={(e) => {
-                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 1), rgba(93, 173, 226, 1))";
-                                                e.target.style.transform = "scale(1.05)";
-                                                e.target.style.color = "#fff";
-                                            }}
-                                            onMouseOut={(e) => {
-                                                e.target.style.background = "linear-gradient(to right, rgba(135, 206, 235, 0.6), rgba(93, 173, 226, 0.6))";
-                                                e.target.style.transform = "scale(1)";
-                                                e.target.style.color = "#333";
-                                            }}
-                                        >
-                                            Seller Login
-                                        </Link>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        )}
-                    </div>
+                    {user && (
+                        <span className="navbar-text ms-3">
+                            <b>{user.displayName || user.email}</b>
+                        </span>
+                    )}
                 </div>
             </nav>
         </header>

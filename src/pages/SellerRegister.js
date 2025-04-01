@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { auth, database } from '../firebase/firebaseConfig';
-import '../styles/register.css';
+import '../styles/seller-reg.css';
 
 const SellerRegister = () => {
     const [formData, setFormData] = useState({

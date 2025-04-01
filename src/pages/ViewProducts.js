@@ -1,4 +1,3 @@
-// src/pages/ViewProducts.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ref, get } from 'firebase/database';
@@ -36,9 +35,14 @@ const ViewProducts = () => {
                             id: productId,
                             ...product,
                             status,
+                            // Use timestamp or created date for sorting
+                            timestamp: product.timestamp || product.createdAt || startTime || 0
                         });
                     });
 
+                    // Sort products by timestamp (newest first)
+                    productList.sort((a, b) => b.timestamp - a.timestamp);
+                    
                     setProducts(productList);
                 } else {
                     setProducts([]);
@@ -64,9 +68,9 @@ const ViewProducts = () => {
     }
 
     return (
-        <div className="view-products-page" style={{ paddingTop: '80px' }}>
+        <div className="view-products-page" style={{ paddingTop: '15px' }}>
             <div className="container">
-                <h2 className="text-center mb-4">Available Auctions</h2>
+                <h2 className="text-center mb-4"style={{ paddingTop: '15px'}}>Available Auctions</h2>
                 {error && (
                     <div className="alert alert-danger" role="alert">
                         {error}

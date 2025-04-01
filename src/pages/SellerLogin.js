@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ref, get } from 'firebase/database';
 import { auth, database } from '../firebase/firebaseConfig';
-import '../styles/login.css';
+import '../styles/sellerlogin.css';
 
 const SellerLogin = () => {
     const [formData, setFormData] = useState({

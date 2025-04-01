@@ -164,7 +164,7 @@ const SellerDashboard = () => {
             <div className="header-text">
               <h1 className="animate__animated animate__fadeInDown">Seller Dashboard</h1>
               <p className="lead animate__animated animate__fadeIn animate__delay-1s">
-                Welcome back, <strong className="text-warning">{sellerName}</strong>
+                 Welcome <strong className="text-warning"><b>{sellerName}</b></strong>
               </p>
             </div>
             <div className="animate__animated animate__fadeInRight">
@@ -220,7 +220,7 @@ const SellerDashboard = () => {
                   className={`btn ${filterStatus === "upcoming" ? "btn-secondary" : "btn-outline-secondary"}`}
                   onClick={() => setFilterStatus("upcoming")}
                 >
-                  Upcoming
+                Coming
                 </button>
                 <button
                   className={`btn ${filterStatus === "ended" ? "btn-danger" : "btn-outline-danger"}`}
