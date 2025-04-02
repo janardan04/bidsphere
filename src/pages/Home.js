@@ -1,9 +1,11 @@
 // src/pages/Home.js
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/index.css'; // Assuming you have this CSS file
 
 const Home = () => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         // Typing animation for hero-lead
         const heroLead = document.querySelector('.hero-lead');
@@ -39,7 +41,7 @@ const Home = () => {
             <div className="container main-container d-flex flex-column justify-content-center align-items-center min-vh-100">
                 <div className="hero-card text-center animate__animated ">
                     <h1 className="hero-title">
-                        <i className="bi bi-hammer"></i> Welcome to BidSphere!
+                        <i className="fas fa-gavel"></i> Welcome to BidSphere!
                     </h1>
                     <p className="hero-lead">
                         Discover unique items & exciting auctions. Buy, sell, and bid with confidence on our trusted platform!
@@ -50,33 +52,33 @@ const Home = () => {
                     </p>
 
                     <div className="cta-button-container">
-                        <Link to="/login" className="btn btn-success cta-button">
-                            <i className="bi bi-box-arrow-in-right"></i> Login
-                        </Link>
-                        <Link to="/register" className="btn btn-success cta-button">
-                            <i className="bi bi-person-plus"></i> Register
-                        </Link>
+                        <button className="btn btn-sky-blue cta-button" onClick={() => navigate('/login')}>
+                            <i className="fas fa-sign-in-alt me-2"></i> Login
+                        </button>
+                        <button className="btn btn-sky-blue cta-button" onClick={() => navigate('/register')}>
+                            <i className="fas fa-user-plus me-2"></i> Register
+                        </button>
                     </div>
 
                     <div className="feature-section mt-5">
                         <div className="row g-4">
                             <div className="col-md-4">
                                 <div className="feature-item">
-                                    <i className="bi bi-shield-check feature-icon"></i>
+                                    <i className="fas fa-shield-alt feature-icon"></i>
                                     <h4>Secure Bidding</h4>
                                     <p>Safe and encrypted transactions for peace of mind</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="feature-item">
-                                    <i className="bi bi-clock-history feature-icon"></i>
+                                    <i className="fas fa-history feature-icon"></i>
                                     <h4>Real-time Updates</h4>
                                     <p>Instant bid notifications and auction alerts</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="feature-item">
-                                    <i className="bi bi-trophy feature-icon"></i>
+                                    <i className="fas fa-trophy feature-icon"></i>
                                     <h4>Win Amazing Items</h4>
                                     <p>Unique collectibles & rare finds at great prices</p>
                                 </div>
@@ -89,21 +91,21 @@ const Home = () => {
                         <div className="row g-4">
                             <div className="col-md-4">
                                 <div className="step-item">
-                                    <i className="bi bi-person-plus step-icon"></i>
+                                    <i className="fas fa-user-plus step-icon"></i>
                                     <h4>Register</h4>
                                     <p>Create an account to start bidding or selling.</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="step-item">
-                                    <i className="bi bi-search step-icon"></i>
+                                    <i className="fas fa-search step-icon"></i>
                                     <h4>Find Items</h4>
                                     <p>Browse or search for items you're interested in.</p>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="step-item">
-                                    <i className="bi bi-hammer step-icon"></i>
+                                    <i className="fas fa-gavel step-icon"></i>
                                     <h4>Bid or Sell</h4>
                                     <p>Place bids on items or list your own for auction.</p>
                                 </div>

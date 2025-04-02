@@ -12,7 +12,9 @@ import SellerDashboard from './pages/SellerDashboard';
 import SellerLogin from './pages/SellerLogin';
 import SellerRegister from './pages/SellerRegister';
 import PlaceBid from './pages/PlaceBid';
-import Profile from './pages/Profile'; // Import the Profile component
+import Profile from './pages/Profile'; // Already imported
+import Payment from './pages/Payment'; // New import for Payment component
+import Receipt from './pages/Receipt'; // New import for Receipt component
 
 function App() {
     return (
@@ -31,7 +33,9 @@ function App() {
                     <Route path="/seller-login" element={<SellerLogin />} />
                     <Route path="/seller-register" element={<SellerRegister />} />
                     <Route path="/place-bid/:id" element={<PlaceBid />} />
-                    <Route path="/profile" element={<Profile />} /> {/* Added Profile route */}
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/payment" element={<Payment />} /> {/* Added Payment route */}
+                    <Route path="/receipt" element={<Receipt />} /> {/* Added Receipt route */}
                 </Routes>
                 <Footer />
             </div>

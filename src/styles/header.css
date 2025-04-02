@@ -12,7 +12,7 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Brand/Logo styling */
+/* Brand/Logo styling as button */
 .navbar-brand {
     font-size: 1.8rem;
     background: linear-gradient(45deg, #0d6efd, #87ceeb);
@@ -22,13 +22,18 @@
     font-weight: 800;
     letter-spacing: 0.5px;
     transition: transform 0.3s ease;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .navbar-brand:hover {
     transform: scale(1.05);
+    text-decoration: none;
 }
 
-/* Navigation links */
+/* Navigation links as buttons */
 .navbar-nav .nav-link {
     font-weight: 600;
     color: #495057;
@@ -36,12 +41,17 @@
     padding: 8px 15px;
     border-radius: 20px;
     transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }
 
 .navbar-nav .nav-link:hover {
     background-color: rgba(135, 206, 235, 0.2);
     transform: translateY(-2px);
     color: #0d6efd;
+    text-decoration: none;
 }
 
 .navbar-nav .nav-link.active {
@@ -148,6 +158,8 @@
 @media (max-width: 991.98px) {
     .navbar-nav .nav-link {
         margin: 5px 0;
+        width: 100%;
+        text-align: left;
     }
     
     .search-form {
@@ -183,6 +195,7 @@
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0.25rem rgba(135, 206, 235, 0.5);
 }
+
 .logout-button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

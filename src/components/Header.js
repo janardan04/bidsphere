@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import "bootstrap/dist/js/bootstrap.bundle.min"; // Ensure Bootstrap JS is included
-import "../styles/header.css"; // Assuming you have a CSS file for styling
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "../styles/header.css";
 
 const Header = () => {
     const [user, setUser] = useState(null);
@@ -33,12 +33,19 @@ const Header = () => {
         navigate(`/auctions?search=${searchQuery}`);
     };
 
+    const navigateTo = (path) => {
+        navigate(path);
+    };
+
     return (
         <header>
             <nav className="custom-header navbar navbar-expand-lg">
-                <Link className="navbar-brand" to="/">
+                <button 
+                    className="navbar-brand nav-button" 
+                    onClick={() => navigateTo("/")}
+                >
                     BidSphere
-                </Link>
+                </button>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -53,60 +60,79 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" to="/">
+                            <button 
+                                className="nav-link active nav-button" 
+                                onClick={() => navigateTo("/")}
+                            >
                                 Home
-                            </Link>
+                            </button>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about-us">
+                            <button 
+                                className="nav-link nav-button" 
+                                onClick={() => navigateTo("/about-us")}
+                            >
                                 About
-                            </Link>
+                            </button>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/contact">
+                            <button 
+                                className="nav-link nav-button" 
+                                onClick={() => navigateTo("/contact")}
+                            >
                                 Contact
-                            </Link>
+                            </button>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/auctions">
+                            <button 
+                                className="nav-link nav-button" 
+                                onClick={() => navigateTo("/auctions")}
+                            >
                                 Auctions
-                            </Link>
+                            </button>
                         </li>
                         {!user && (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/login">
+                                    <button 
+                                        className="nav-link nav-button" 
+                                        onClick={() => navigateTo("/login")}
+                                    >
                                         User Login
-                                    </Link>
+                                    </button>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/seller-login">
+                                    <button 
+                                        className="nav-link nav-button" 
+                                        onClick={() => navigateTo("/seller-login")}
+                                    >
                                         Seller Login
-                                    </Link>
+                                    </button>
                                 </li>
                             </>
                         )}
                         {user && (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">
+                                    <button 
+                                        className="nav-link nav-button" 
+                                        onClick={() => navigateTo("/profile")}
+                                    >
                                         Profile
-                                    </Link>
+                                    </button>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="#" onClick={handleLogout}>
+                                    <button 
+                                        className="nav-link nav-button logout-button" 
+                                        onClick={handleLogout}
+                                    >
                                         Logout
-                                    </Link>
+                                    </button>
                                 </li>
                             </>
                         )}
                     </ul>
-                    <form className="d-flex search-form" onSubmit={handleSearch}>
-                        <input type="search" className="form-control search-input" placeholder="Search..." />
-                        <button className="btn btn-search" type="submit">
-                            <i className="fas fa-search"></i>
-                        </button>
-                    </form>
+                    
                     {user && (
                         <span className="navbar-text ms-3">
                             <b>{user.displayName || user.email}</b>
